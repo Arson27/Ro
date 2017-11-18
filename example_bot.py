@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Nov 18 19:28:25 2017
+Just an example of how to implement the MvpTracker class.
 
 @author: RoundPiano
 """
@@ -11,7 +11,7 @@ import time
 client = discord.Client()
 tracker_backup_file = '' #txt file name here
 tracker = mvptracker.MvpTracker(tracker_backup_file)
-token = 'Mzc4NTY4MDUyODU5NDY5ODI1.DOdYfw._IemFgSuX158pwk4kgGJq23TzDw' #insert token here
+token = '' #insert token here
 
 @client.event
 async def on_message(message):
