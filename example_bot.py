@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Just an example of how to implement the MvpTracker class.
+Fully functioning if you set a valid token and backup file name.
 
 @author: RoundPiano
 """
