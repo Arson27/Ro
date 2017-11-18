@@ -7,7 +7,6 @@ The main module of the MVP tracking functionality.
 
 import os
 import time
-#import MvpTracker.mvp as mvp
 import mvp
 import string
 
