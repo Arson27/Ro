@@ -91,7 +91,7 @@ class MvpTracker():
         recapitalized_name = string.capwords(name) #'stormy knight' -> 'Stormy Knight'
         for monster in self.list_of_mvps:
             if monster.display_name == recapitalized_name:
-                return(monster)
+                return monster
                 
     def clear_monster(self, name):
         """Resets a monster to the starting time of death."""

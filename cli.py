@@ -2,7 +2,7 @@ import sys
 import mvptracker
 import time
 
-tracker_backup_file = 'mvptracker'  # txt file name here
+tracker_backup_file = 'mvp_list_file.txt'  # txt file name here
 tracker = mvptracker.MvpTracker(tracker_backup_file)
 
 def main():

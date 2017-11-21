@@ -10,7 +10,7 @@ import time
 from mvp_properties import *
 
 class Mvp():
-    
+
     def __init__(self, id_number, display_name,
                  respawn_min, respawn_max, time_of_death, locations=None, names=None):
         self.line_number = int(id_number)
@@ -57,7 +57,7 @@ default_time = 0
 #mvp_list = [Mvp(i, mvp_names[i], mvp_respawn_min[i], mvp_respawn_max[i],
 #                default_time, mvp_location[i]) for i in range(len(mvp_names))]
 
-def reset_file():
+def reset_file(mvp_list):
     """Makes the backup file or restores it to the starting settings."""
     with open('mvp_list_file.txt', 'w') as file:
         for mvp in mvp_list:
@@ -74,7 +74,7 @@ def start_file_and_list():
     if not os.path.exists('mvp_list_file.txt'):
         mvp_list = [Mvp(i, mvp_names[i], mvp_respawn_min[i], mvp_respawn_max[i],
                         default_time, mvp_location[i]) for i in range(len(mvp_names))]
-        reset_file()
+        reset_file(mvp_list)
     else:
         mvp_list = []
         with open('mvp_list_file.txt', 'r') as file:
