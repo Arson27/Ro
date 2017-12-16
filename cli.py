@@ -18,7 +18,12 @@ def mvpCommand(input):
     input_string = ' '.join(input)
     mvp = ' '.join(input_string.split(' ')[2:-1])
     input_tod = input_string.split(' ')[-1]
-    time_of_death = tracker.from_input_to_seconds(input_tod)
+    if input_tod.find(":") > -1:
+        time_of_death = tracker.from_input_to_seconds(input_tod)
+    else:
+        mvpHelpCommand()
+        return
+
     if tracker.update_death(mvp, time_of_death):  # try to update it
         to_say = "Last known time of death for {} has been updated to: {}".format(mvp, input_tod)
     else:  # if it can't update it, it falls here
