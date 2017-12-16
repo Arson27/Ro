@@ -7,7 +7,7 @@ tracker = mvptracker.MvpTracker(tracker_backup_file)
 
 def main():
     command = sys.argv[1]
-    if command == "mvp":
+    if command == "mvp" and sys.argv[2]:
         mvpCommand(sys.argv)
     elif command == "mvplist":
         mvpListCommand()
