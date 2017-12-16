@@ -7,8 +7,8 @@ The main module of the MVP tracking functionality.
 
 import os
 import time
+#import MvpTracker.mvp as mvp
 import mvp
-import string
 
 class MvpTracker():
     
@@ -40,27 +40,20 @@ class MvpTracker():
         return False
             
     def from_input_to_seconds(self, input_time, before=True):
-        """Takes a 'HH:MMAM' string and returns an int seconds since epoch"""
+        """Takes a 24 hours 'HH:MM' string and returns an int seconds since epoch"""
         #note: I didn't do extensive testing on this. It might return wrong results in edge cases.
         hour = int(input_time.split(':')[0])
         minute = int(input_time.split(':')[1][:2])
-        am_pm = input_time.split(':')[1][-2:]
                 
         current_instant = self.current_time()
         current_time = self.display_time(current_instant)
         current_hour = int(current_time.split(':')[0])
         current_minute = int(current_time.split(':')[1][:2])
-        current_am_pm = current_time.split(':')[1][-2:]
         
         target_time = current_instant 
         #find most recent past time that fits the input
-        if current_am_pm == am_pm:
-            target_time -= (current_hour - hour) * 60 * 60
-            target_time -= (current_minute - minute) * 60
-        else:
-            current_hour += 12
-            target_time -= (current_hour - hour) * 60 * 60
-            target_time -= (current_minute - minute) * 60
+        target_time -= (current_hour - hour) * 60 * 60
+        target_time -= (current_minute - minute) * 60
         return target_time
    
     def relevant_deaths(self):
@@ -81,16 +74,19 @@ class MvpTracker():
         
     def display_time(self, secs):
         """Converts time since epoch in seconds to string in HH:MMAM format."""
+        secs = int(secs)
         secs += 60 * 60 * - 8 #8 hours before UTC aka server time
-        am_pm = 'AM' if time.gmtime(secs)[3] < 12 else 'PM'
-        hour = str(time.gmtime(secs)[3] % 12) if (time.gmtime(secs)[3] % 12 > 9) else ('0' + str(time.gmtime(secs)[3] % 12))
-        minute = str(time.gmtime(secs)[4]) if time.gmtime(secs)[4] > 9 else '0' + str(time.gmtime(secs)[4])
-        return '{}:{}{}'.format(hour, minute, am_pm)
+        hour = time.gmtime(secs)[3]
+        if time.gmtime(secs)[4] < 10:
+            #18:1 -> 18:01
+            minute = '0' + str(time.gmtime(secs)[4])
+        else:
+            minute = time.gmtime(secs)[4]
+        return '{}:{}'.format(hour, minute)
     
     def find_monster(self, name):
-        recapitalized_name = string.capwords(name) #'stormy knight' -> 'Stormy Knight'
         for monster in self.list_of_mvps:
-            if monster.display_name == recapitalized_name:
+            if monster.display_name.lower() == name.lower():
                 return(monster)
                 
     def clear_monster(self, name):
