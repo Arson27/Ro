@@ -25,8 +25,9 @@ def mvpCommand(input):
         return
 
     if tracker.update_death(mvp, time_of_death):  # try to update it
-        to_say = "Last known time of death for {} has been updated to: {}".format(mvp, input_tod)
-    else:  # if it can't update it, it falls here
+        monster_display_name = tracker.find_monster(mvp).display_name
+        to_say = "Last known time of death for {} has been updated to: {}".format(monster_display_name, input_tod)
+    else:  # if it can't find or update it, it falls here
         to_say = 'Sorry, I could not understand your request. Try using !mvphelp.'
 
     print(to_say)
