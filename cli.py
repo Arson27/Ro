@@ -32,24 +32,22 @@ def mvpCommand(input):
     print(to_say)
 
 def mvpListCommand():
-    to_say = ''
+    to_say = 'Current Server Time: {}\n\n'.format(tracker.display_time(tracker.current_time()))
     for monster in tracker.relevant_deaths():
         to_say += '{}: {}~{}\n'.format(monster[0], monster[1], monster[2])
     if len(to_say) == 0:
-        to_say = 'The MVP list is currently empty.'
-    else:
-        to_say = 'Current Server Time: {}\n\n'.format(tracker.display_time(time.time())) + to_say
+        to_say += 'The MVP list is currently empty.'
 
     print(to_say)
 
 def mvpHelpCommand():
-    to_say = '--!mvp -> updates the time of death of an MVP'
-    to_say += '\nSyntax: !mvp mvpname timeofdeath; e.g. !mvp Stormy Knight 03:57PM)'
+    to_say = '--!mvp <mvpname> <time of death> -> updates the time of death of an MVP'
+    to_say += '\ne.g. !mvp Stormy Knight 03:57PM'
     to_say += '\nFor bosses with multiple spawn locations, use !mvp mvpname '
     to_say += '(location) timeofdeath; e.g. !mvp Atroce (ve_fild02) 02:03AM'
     to_say += '\n--!mvplist -> displays the MVPs that respawned recently or that will respawn in the future.'
-    to_say += '\nAll time stamps should be in server time and in HH:MMAM or HH:MMPM format.'
-    to_say += '\nThis is a work in progress, currently being developed by @RoundPiano#0630.'
+    to_say += '\nAll time stamps should be in server time and in HH:MM format (24 hour clock).'
+    to_say += '\nThis is a work in progress, currently being developed by RoundPiano#0630 and HuiJun#8063.'
 
     print(to_say)
 
