@@ -43,9 +43,9 @@ def mvpListCommand():
 
 def mvpHelpCommand():
     to_say = '--!mvp <mvpname> <time of death> -> updates the time of death of an MVP'
-    to_say += '\ne.g. !mvp Stormy Knight 03:57PM'
+    to_say += '\ne.g. !mvp Stormy Knight 03:57'
     to_say += '\nFor bosses with multiple spawn locations, use !mvp mvpname '
-    to_say += '(location) timeofdeath; e.g. !mvp Atroce (ve_fild02) 02:03AM'
+    to_say += '(location) timeofdeath; e.g. !mvp Atroce (ve_fild02) 02:03'
     to_say += '\n--!mvplist -> displays the MVPs that respawned recently or that will respawn in the future.'
     to_say += '\nAll time stamps should be in server time and in HH:MM format (24 hour clock).'
     to_say += '\nThis is a work in progress, currently being developed by RoundPiano#0630 and HuiJun#8063.'
