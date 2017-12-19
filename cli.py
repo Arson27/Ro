@@ -34,9 +34,11 @@ def mvpCommand(input):
 
 def mvpListCommand():
     to_say = 'Current Server Time: {}\n\n'.format(tracker.display_time(tracker.current_time()))
+    list_empty = True
     for monster in tracker.relevant_deaths():
         to_say += '{}: {}~{}\n'.format(monster[0], monster[1], monster[2])
-    if len(to_say) == 0:
+        list_empty = False
+    if list_empty:
         to_say += 'The MVP list is currently empty.'
 
     print(to_say)
